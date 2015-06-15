@@ -53,4 +53,12 @@ unzip master.zip && \
 cd ovn-docker-master && \ 
 cp ovn-* /usr/bin/
 
+# install ovn dependencies
+
+# Pulling in the world to make it run...
+RUN apt-get install -y python-pip python-dev
+RUN pip install oslo.utils
+# Install via PIP to get the latest version (Ubunutu is way too old)
+RUN  pip install python-neutronclient
+
 CMD ["/usr/bin/supervisord"]
