@@ -65,8 +65,6 @@ RUN pip install oslo.utils
 # Install via PIP to get the latest version (Ubunutu is way too old)
 RUN pip install python-neutronclient
 
-ADD configure-ovn.sh /usr/local/share/openvswitch/
-
 # Supervisord config
 ADD run-supervisord.sh /run-supervisord.sh
 ADD supervisord.conf /etc/
