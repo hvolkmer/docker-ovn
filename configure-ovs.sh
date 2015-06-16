@@ -14,3 +14,12 @@ ovs-vsctl --no-wait -- set Open_vSwitch . external-ids:system-id=`cat /proc/sys/
 ovs-vsctl --no-wait -- set-manager ptcp:6640
 ovs-appctl -t ovsdb-server ovsdb-server/add-remote db:Open_vSwitch,Open_vSwitch,manager_options
 
+# configure OVN
+IPAM_IP=$(cat /etc/ovn-ipam-ip)
+LOCAL_IP=$(cat /etc/ovn-local-ip)
+
+ovn-integrate create-integration-bridge
+ovn-integrate set-ipam $IPAM_IP
+ovn-integrate set-tep $LOCAL_IP
+ovn-container init --bridge br-int --overlay-mode
+ovn-controller --pidfile --detach -vconsole:off --log-file
