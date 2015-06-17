@@ -21,5 +21,5 @@ LOCAL_IP=$(cat /etc/ovn-local-ip)
 ovn-integrate create-integration-bridge
 ovn-integrate set-ipam $IPAM_IP
 ovn-integrate set-tep $LOCAL_IP
+ovn-integrate set-encap-type geneve # vlxan or stt are also possible
 ovn-container init --bridge br-int --overlay-mode
-ovn-controller --pidfile --detach -vconsole:off --log-file
