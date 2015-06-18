@@ -69,4 +69,8 @@ RUN pip install python-neutronclient
 ADD run-supervisord.sh /run-supervisord.sh
 ADD supervisord.conf /etc/
 
+# Install the same docker as the "outside CoreOS"
+RUN wget -O /usr/bin/docker  https://get.docker.com/builds/Linux/x86_64/docker-1.5.0 
+RUN chmod +x /usr/bin/docker
+
 CMD ["/run-supervisord.sh"]
